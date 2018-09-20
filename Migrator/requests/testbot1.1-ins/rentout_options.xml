@@ -1,0 +1,20 @@
+<response>
+    <button_template>
+        <text>...</text>
+        <buttons>
+            <type>postback</type>
+            <title>Services available</title>
+            <payload>~That feature is coming soon...</payload>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>Pricing</title>
+            <payload>Rent out services pricing</payload>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>Schedule appointment</title>
+            <payload>~That feature is coming soon...</payload>
+        </buttons>
+    </button_template>
+</response>

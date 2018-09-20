@@ -1,0 +1,35 @@
+<response>
+    <text_qr>
+        <text>Hello again! Where were we?</text>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Home</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Buyer Options</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Seller Options</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Renter Options</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Rent Out Options</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Speak With Agent</title>
+            <payload />
+        </quick_replies>
+    </text_qr>
+</response>

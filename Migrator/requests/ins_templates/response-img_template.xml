@@ -1,0 +1,8 @@
+Template for an image. Url must be a facebook url
+<!--==============================-->
+
+<response>
+    <image>
+        <url>__fbMediaURL</url>
+    </image>
+</response>

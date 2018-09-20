@@ -1,0 +1,42 @@
+XML example for a list template in details format. No image
+thumbnails. Buttons are included in this template which are
+a max of 1 per item and 1 per template
+<!--==============================-->
+
+<response>
+    <list_template>
+        <top_element_style>compact</top_element_style>
+        <elements>
+            <title>Hello</title>
+            <subtitle>This is a test</subtitle>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <title>btn1</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>hi</title>
+            <subtitle>this is also a test</subtitle>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/newyork.jpg</url>
+                <title>btn2</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>andddd</title>
+            <subtitle>so is this</subtitle>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/paris.jpg</url>
+                <title>btn2</title>
+            </buttons>
+        </elements>
+        <buttons>
+            <type>postback</type>
+            <payload>view more</payload>
+            <title>View More</title>
+        </buttons>
+    </list_template>
+</response>

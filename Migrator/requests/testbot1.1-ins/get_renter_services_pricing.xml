@@ -1,0 +1,20 @@
+<response>
+    <text_qr>
+        <text>The agent charges a $200 non-refundable deposit as the only rental fee. See rental services for more information about what is offered at that price.</text>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Rental Services</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Renter Options</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>Start Over</title>
+            <payload />
+        </quick_replies>
+    </text_qr>
+</response>

@@ -1,0 +1,22 @@
+Instruction template for a button template (text with
+buttons). 1 button minimum, 3 max? (check this). Buttons
+can be a combination of web_url or postback. Payload for a
+postback is the instruction that would be to come back from
+the agent, NOT the message request to the agent.
+<!--==============================-->
+
+<response>
+    <button_template>
+        <text>__messageText</text>
+        <buttons>
+            <type>web_url</type>
+            <url>__urlOnClick</url>
+            <title>__btn1Text</title>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>__btn2Text</title>
+            <payload>__instructionOnClick</payload>
+        </buttons>
+    </button_template>
+</response>

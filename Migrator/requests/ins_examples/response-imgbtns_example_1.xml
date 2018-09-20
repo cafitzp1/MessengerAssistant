@@ -1,0 +1,18 @@
+Example instruction for an image with 2 buttons
+<!--==============================-->
+
+<response>
+    <image_buttons>
+        <url>https://www.facebook.com/photo.php?fbid=114142636207642</url>
+        <buttons>
+            <type>web_url</type>
+            <url>https://www.facebook.com/photo.php?fbid=114142636207642</url>
+            <title>linkBtn</title>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>postbackBtn</title>
+            <payload>hello</payload>
+        </buttons>
+    </image_buttons>
+</response>

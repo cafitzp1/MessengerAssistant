@@ -1,0 +1,67 @@
+XML example for a list template with image thumbnails: This
+sample uses image thumbnails as well as a large top
+element. Each thumbnail has a default_action property which
+opens the default_action.url in a webview.
+<!--==============================-->
+
+<response>
+    <list_template>
+        <top_element_style>large</top_element_style>
+        <elements>
+            <title>Hello</title>
+            <subtitle>This is a test</subtitle>
+            <image_url>https://www.w3schools.com/w3css/img_lights.jpg</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <messenger_extensions>true</messenger_extensions>
+                <webview_height_ratio>compact</webview_height_ratio>
+                <fallback_url>https://www.w3schools.com</fallback_url>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <title>btn1</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>hi</title>
+            <subtitle>this is also a test</subtitle>
+            <image_url>https://www.w3schools.com/bootstrap/newyork.jpg</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/newyork.jpg</url>
+                <messenger_extensions>true</messenger_extensions>
+                <webview_height_ratio>tall</webview_height_ratio>
+                <fallback_url>https://www.w3schools.com</fallback_url>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/newyork.jpg</url>
+                <title>btn2</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>andddd</title>
+            <subtitle>so is this</subtitle>
+            <image_url>https://www.w3schools.com/bootstrap/paris.jpg</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/paris.jpg</url>
+                <messenger_extensions>true</messenger_extensions>
+                <webview_height_ratio>full</webview_height_ratio>
+                <fallback_url>https://www.w3schools.com</fallback_url>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/bootstrap/paris.jpg</url>
+                <title>btn2</title>
+            </buttons>
+        </elements>
+        <buttons>
+            <type>postback</type>
+            <payload>view more</payload>
+            <title>View More</title>
+        </buttons>
+    </list_template>
+</response>

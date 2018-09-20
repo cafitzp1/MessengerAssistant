@@ -1,0 +1,50 @@
+Template for a list template. 2-4  elements. Optional 1
+button max per element and template (1 button at the
+bottom, 1 per element). Per element, title 1 of (or both)
+subtitle or image_url are required. Cover image is disabled
+when setting top_element_style to compact. When setting
+messenger_extensions to true, the url listed MUST be
+whitelisted in page settings. <!--==============================-->
+<response>
+    <list_template>
+        <top_element_style>large|compact</top_element_style>
+        <elements>
+            <title>__templateTitle</title>
+            <subtitle>__templateSubtitle</subtitle>
+            <image_url>__imgURL</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url></url>
+                <messenger_extensions>__true|false</messenger_extensions>
+                <webview_height_ratio>__compact|tall|full</webview_height_ratio>
+                <fallback_url>__webURL</fallback_url>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>__templateTitle</title>
+            <subtitle>__templateSubtitle</subtitle>
+            <image_url>__imgURL</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url></url>
+                <messenger_extensions>__true|false</messenger_extensions>
+                <webview_height_ratio>__compact|tall|full</webview_height_ratio>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+        </elements>
+        <buttons>
+            <type>postback</type>
+            <payload>__instructionOnClick</payload>
+            <title>__buttonText</title>
+        </buttons>
+    </list_template>
+</response>

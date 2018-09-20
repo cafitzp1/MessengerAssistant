@@ -1,0 +1,37 @@
+<response>
+    <list_template>
+        <top_element_style>compact</top_element_style>
+        <elements>
+            <title>Buyer Resources</title>
+            <subtitle>Bring me to buyers resources</subtitle>
+            <buttons>
+                <type>web_url</type>
+                <url>https://caseytcoleman.com/buyers-guide</url>
+                <title>Go</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>Offers</title>
+            <subtitle>I want to see what you offer</subtitle>
+            <buttons>
+                <type>postback</type>
+                <payload>buyer feature unavailable</payload>
+                <title>Go</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>Appointment</title>
+            <subtitle>Set up an appointment with the agent</subtitle>
+            <buttons>
+                <type>postback</type>
+                <payload>buyer feature unavailable</payload>
+                <title>Go</title>
+            </buttons>
+        </elements>
+        <buttons>
+            <type>web_url</type>
+            <url>https://caseytcoleman.com</url>
+            <title>View More</title>
+        </buttons>
+    </list_template>
+</response>

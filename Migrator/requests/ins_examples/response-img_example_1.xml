@@ -1,0 +1,10 @@
+Example instruction for an image
+URL has to be a facebook url. If it includes queries
+the ampersands have to be escaped like so & = &amp;
+<!--==============================-->
+
+<response>
+    <image>
+        <url>https://www.facebook.com/photo.php?fbid=114142636207642&amp;set=a.114127936209112&amp;type=3&amp;theater</url>
+    </image>
+</response>

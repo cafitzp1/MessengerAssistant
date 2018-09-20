@@ -1,0 +1,191 @@
+{
+    "text": {
+        "message": {
+            "text": "__messageText"
+        }
+    },
+    "text_qr": {
+        "message": {
+            "text": "__messageText",
+            "quick_replies": [
+                {
+                    "content_type":"text",
+                    "title":"__qr1Text",
+                    "payload":"__instructionOnClick"
+                },
+                {
+                    "content_type":"text",
+                    "title":"__qr2Text",
+                    "payload":"__instructionOnClick"
+                }
+            ]
+        }
+    },
+    "button_template": { 
+        "message":{
+            "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"__btnMsgText",
+                    "buttons":[
+                        {
+                            "type":"web_url",
+                            "url":"https://www.google.com",
+                            "title":"__btn1Text"
+                        } , {
+                            "type":"postback",
+                            "title":"__btn2Text",
+                            "payload":"__btn2Text"
+                        }              
+                    ]    
+                }
+            }
+        }
+    },
+    "image": {
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "media",
+                    "elements": [
+                        {
+                            "media_type": "image",
+                            "url": "__fbUrl"
+                        }
+                    ]
+                }
+            } 
+        }
+    },
+    "image_buttons": { 
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "media",
+                    "elements": [
+                        {
+                            "media_type": "image",
+                            "url": "__fbUrl",
+                            "buttons":[
+                                {
+                                    "type":"web_url",
+                                    "url":"https://www.google.com",
+                                    "title":"__btn1Text"
+                                } , {
+                                    "type":"postback",
+                                    "title":"__btn2Text",
+                                    "payload":"__btn2Text"
+                                }              
+                            ]    
+                        }
+                    ]
+                }
+            } 
+        }
+    },
+    "generic_template": {
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [
+                        {
+                            "title":"Hello",
+                            "image_url":"https://www.w3schools.com/w3css/img_lights.jpg",
+                            "subtitle":"This is a test",
+                            "default_action": {
+                                "type": "web_url",
+                                "url": "https://www.w3schools.com/w3css/img_lights.jpg",
+                                "messenger_extensions": "false",
+                                "webview_height_ratio": "compact"
+                            },
+                            "buttons":[
+                                {
+                                    "type":"web_url",
+                                    "url":"https://www.google.com",
+                                    "title":"URL"
+                                }, 
+                                {
+                                    "type":"postback",
+                                    "title":"Postback",
+                                    "payload":"POSTBACK"
+                                }              
+                            ]           
+                        }
+                    ]
+                }
+            }
+        }     
+    },
+    "list_template": {
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "list",
+                    "top_element_style": "<large|compact>",
+                    "elements": [
+                        {
+                            "title": "__element1Title",
+                            "subtitle": "__element1Subtitle",
+                            "image_url": "__imgURL",       
+                            "buttons": [
+                                {
+                                    "title": "__buttonTitle",
+                                    "type": "web_url",
+                                    "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                                    "messenger_extensions": true,
+                                    "webview_height_ratio": "tall",
+                                    "fallback_url": "__fallbackURL"            
+                                }
+                            ]
+                        },
+                        {
+                            "title": "__element2Title",
+                            "subtitle": "__element1Subtitle",
+                            "default_action": {
+                                "type": "web_url",
+                                "url": "__webURL",
+                                "messenger_extensions": false,
+                                "webview_height_ratio": "tall"
+                            }
+                        },
+                        {
+                            "title": "__element3Title",
+                            "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                            "subtitle": "__element3Subtitle",
+                            "default_action": {
+                                "type": "web_url",
+                                "url": "__webURL",
+                                "messenger_extensions": true,
+                                "webview_height_ratio": "tall",
+                                "fallback_url": "__fallbackURL"
+                            },
+                        "buttons": [
+                            {
+                                "title": "__buttonTitle",
+                                "type": "web_url",
+                                "url": "__webURL",
+                                "messenger_extensions": true,
+                                "webview_height_ratio": "tall",
+                                "fallback_url": "__fallbackURL"            
+                            }
+                        ]        
+                        }
+                    ],
+                    "buttons": [
+                        {
+                            "title": "View More",
+                            "type": "postback",
+                            "payload": "payload"            
+                        }
+                    ]  
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,52 @@
+Example instruction for a generic template carousel.
+Apparently there can be a number of these but at the moment
+I'm not sure of the max. This example uses 2 with a couple
+buttons each.
+<!--==============================-->
+
+<response>
+    <generic_template>
+        <elements>
+            <title>Hello</title>
+            <image_url>https://www.w3schools.com/w3css/img_lights.jpg</image_url>
+            <subtitle>This is a test</subtitle>
+            <default_action>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <messenger_extensions>true</messenger_extensions>
+                <webview_height_ratio>compact</webview_height_ratio>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <title>btn1</title>
+            </buttons>
+            <buttons>
+                <type>postback</type>
+                <title>btn2</title>
+                <payload>btn2</payload>
+            </buttons>
+        </elements>
+        <elements>
+            <title>Hello</title>
+            <image_url>https://www.w3schools.com/w3css/img_lights.jpg</image_url>
+            <subtitle>This is a test</subtitle>
+            <default_action>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <messenger_extensions>true</messenger_extensions>
+                <webview_height_ratio>compact</webview_height_ratio>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>https://www.w3schools.com/w3css/img_lights.jpg</url>
+                <title>btn1</title>
+            </buttons>
+            <buttons>
+                <type>postback</type>
+                <title>btn2</title>
+                <payload>btn2</payload>
+            </buttons>
+        </elements>
+    </generic_template>
+</response>

@@ -1,0 +1,20 @@
+<response>
+    <button_template>
+        <text>Ok, so you're a seller...</text>
+        <buttons>
+            <type>web_url</type>
+            <title>See seller resources</title>
+            <url>https://caseytcoleman.com/sellers-guide/</url>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>See what you offer</title>
+            <payload>~That feature is coming soon...</payload>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>Schedule appointment</title>
+            <payload>~That feature is coming soon...</payload>
+        </buttons>
+    </button_template>
+</response>

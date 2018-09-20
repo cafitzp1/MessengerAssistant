@@ -1,0 +1,208 @@
+<!-- MESSAGE TEMPLATES -->
+<!--===================-->
+
+<!-- Text -->
+<message text="__messageText"/>
+
+<!-- Text w/ quick replies -->
+<message>
+    <text>__messageText</text>
+    <quick_replies>
+        <content_type>text</content_type>
+        <title>__qrTitle</title>
+        <payload/>
+    </quick_replies>
+    <quick_replies>
+        <content_type>text</content_type>
+        <title>__qrTitle</title>
+        <payload/>
+    </quick_replies>
+</message>
+
+<!-- Button template (text w/ buttons) -->
+<message>
+    <attachment>
+        <type>template</type>
+        <payload>
+            <template_type>button</template_type>
+            <text>__messageText</text>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+            <buttons>
+                <type>postback</type>
+                <title>__buttonText</title>
+                <payload>__instructionOnClick</payload>
+            </buttons>
+        </payload>
+    </attachment>
+</message>
+
+
+<!-- REPSPONSE TEMPLATES -->
+<!--=====================-->
+
+<!-- Text -->
+<response>
+    <text>
+        <text>__messageText</text>
+    </text>
+</response>
+
+<!-- Text w/ quick replies-->
+<response>
+    <text_qr>
+        <text>__messageText</text>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>__qr1Text</title>
+            <payload />
+        </quick_replies>
+        <quick_replies>
+            <content_type>text</content_type>
+            <title>__qr2Text</title>
+            <payload />
+        </quick_replies>
+    </text_qr>
+</response>
+
+<!-- Button template (text w/ buttons) -->
+<response>
+    <button_template>
+        <text>Select an option</text>
+        <buttons>
+            <type>web_url</type>
+            <url>__urlOnClick</url>
+            <title>__btn1Text</title>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>__btn2Text</title>
+            <payload>__instructionOnClick</payload>
+        </buttons>
+    </button_template>
+</response>
+
+<!-- Image -->
+<response>
+    <image>
+        <url>__fbMediaURL</url>
+    </image>
+</response>
+
+<!-- Image w/ buttons -->
+<response>
+    <image_buttons>
+        <url>__fbMediaURL</url>
+        <buttons>
+            <type>web_url</type>
+            <url>__urlOnClick</url>
+            <title>__buttonText</title>
+        </buttons>
+        <buttons>
+            <type>postback</type>
+            <title>__buttonText</title>
+            <payload>__instructionOnClick</payload>
+        </buttons>
+    </image_buttons>
+</response>
+
+<!-- Generic template (add multiple elements for carousel -->
+<response>
+    <generic_template>
+        <elements>
+            <title>__templateTitle</title>
+            <image_url>__imgURL</image_url>
+            <subtitle>__templateSubtitle</subtitle>
+            <default_action>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <messenger_extensions>true|false</messenger_extensions>
+                <webview_height_ratio>__compact|tall|full</webview_height_ratio>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+            <buttons>
+                <type>postback</type>
+                <title>__buttonText</title>
+                <payload>__instructionOnClick</payload>
+            </buttons>
+        </elements>
+    </generic_template>
+</response>
+
+<!-- List template (needs 2-4 elements, 1 button max) -->
+<response>
+    <list_template>
+        <top_element_style>large|compact</top_element_style>
+        <elements>
+            <title>__templateTitle</title>
+            <subtitle>__templateSubtitle</subtitle>
+            <image_url>__imgURL</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url></url>
+                <messenger_extensions>true|false</messenger_extensions>
+                <webview_height_ratio>compact|tall|full</webview_height_ratio>
+                <fallback_url>__webURL</fallback_url>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+        </elements>
+        <elements>
+            <title>__templateTitle</title>
+            <subtitle>__templateSubtitle</subtitle>
+            <image_url>__imgURL</image_url>
+            <default_action>
+                <type>web_url</type>
+                <url></url>
+                <messenger_extensions>true|false</messenger_extensions>
+                <webview_height_ratio>compact|tall|full</webview_height_ratio>
+            </default_action>
+            <buttons>
+                <type>web_url</type>
+                <url>__urlOnClick</url>
+                <title>__buttonText</title>
+            </buttons>
+        </elements>
+    </list_template>
+</response>
+
+
+<!-- TASK TEMPLATES -->
+<!--=====================-->
+
+<!-- Handover -->
+<task>
+    <handover>
+        <text>__messageText</text>
+    </handover>
+</task>
+
+
+<!-- Notes -->
+<!--=======-->
+Notes:
+-   Arrays in response templates will be correctly parsed, arrays in message templates will not
+    This means any array (where there are 2 XML tags) within message templates must have atleast 2 items 
+-   __instructionOnClick can only be a standard reply or command. using xml will not work
+-   __instructionOnClick as __buttonText essentially turns the button into a quick_reply (text will get 
+    routed to the process instruction function, will be the same as typing in the response or using qr)
+-   Image and image w/ buttons need to use FB image/media url. Templates may use any img url
+-   Escapes characters: " = &quot; '=&apos; & = &amp; <=&lt; >=&gt;
+-   top_element_style = compact|large
+-   webview_height_ratio = compact|tall|full
+-   messenger_extensions = true|false
+-   image urls:
+https://www.w3schools.com/w3css/img_lights.jpg
+https://www.w3schools.com/bootstrap/newyork.jpg
+https://www.w3schools.com/bootstrap/sanfran.jpg
+https://www.w3schools.com/bootstrap/paris.jpg
