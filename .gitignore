@@ -1,5 +1,16 @@
 # misc
 .vscode
 .DS_Store
-ExpressEndpoint/node_modules/pages.json
-LambdaFunction/node_modules/pages.json
+Archive.zip
+
+# function contents (redundant)
+/function/node_modules
+/function/package.json
+/function/package-lock.json
+/function/Archive.zip
+
+# data
+config.js
+page-data.json
+/function/config.js
+/function/page-data.json

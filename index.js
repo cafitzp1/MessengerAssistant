@@ -1,17 +1,15 @@
 'use strict';
-const PORT = 1337;
-var express = require('express');
+var config = require('./config');
+var request = require('request');
 var jsonParser = require('body-parser');
 var xml2js = require('xml2js');
 var xmlParser = new xml2js.Parser({explicitArray: false, mergeAttrs : true});
-var request = require('request');
+var express = require('express');
 var app = express().use(jsonParser.json());
-var verifyToken = 'eLUqm93Fe9ZSV8VG2yFAJkgrb';
-var testVersion = '1.0.1.3';
 
 // listen for events (main entry point for the test environment)
 function listen() {
-    app.listen(process.env.PORT || PORT, () => console.log(`Webhook listening on port ${PORT}...`));
+    app.listen(config.port || config.port, () => console.log(`Webhook listening on port ${config.port}...`));
 
     // GET entry point (for verification)
     app.get('/webhook', (req, res) => {
@@ -24,7 +22,7 @@ function listen() {
 
         // check if mode and token sent is correct
         if (mode && token) {
-            if (mode === 'subscribe' && token === verifyToken) {
+            if (mode === 'subscribe' && token === config.verifyToken) {
                 // respond with the challenge token from the request
                 console.log('--> Webhook verified');
                 res.status(200).send(challenge);
@@ -199,7 +197,8 @@ function processAgentInstruction (sender_psid, recipient_id, instruction) {
             imageJSONconstructor(sender_psid, recipient_id, instruction);
         } else if (instruction.startsWith('`version')) {
             console.log('Routing test version to sendAPI');
-            sendAPI(sender_psid, recipient_id, returnTextJSON(testVersion));
+            let version = returnVersion();
+            sendAPI(sender_psid, recipient_id, returnTextJSON('v' + version));
         }
 
         return;
@@ -281,7 +280,8 @@ function processAgentInstruction (sender_psid, recipient_id, instruction) {
         }
     } else if (data.hasOwnProperty('test')) {
         console.log('XML is for a test');
-        sendAPI(sender_psid, recipient_id, returnTextJSON(testVersion));
+        let version = returnVersion();
+        sendAPI(sender_psid, recipient_id, returnTextJSON('v' + version));
     } else {
         console.log('ERROR: No XML intent detected; replying with a fallback');
         let message_body = returnTextJSON("I'm sorry, there was a problem processing that request...");
@@ -660,12 +660,12 @@ function attachmentUploadAPI (sender_psid, recipient_id, responseJSON) {
 
 // helper functions
 function returnPageAccessToken (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.pageAccessToken;
         }
@@ -673,12 +673,12 @@ function returnPageAccessToken (recipient_id) {
     return -1;
 }
 function returnClientAccessToken (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.clientAccessToken;
         }
@@ -686,12 +686,12 @@ function returnClientAccessToken (recipient_id) {
     return -1;
 }
 function returnPageName (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.pageName;
         }
@@ -808,6 +808,10 @@ function returnListElementJSON (element) {
     // return
     return payload;
 }
+function returnVersion() {
+    let pkg = require('./package.json');
+    return pkg.version;
+}
 
 // TEST ENV ONLY
 // Pages subscribed: 'Test Bot' and 'Test Bot 1.1'
@@ -820,11 +824,9 @@ function returnListElementJSON (element) {
 // sample image: https://www.w3schools.com/w3css/img_lights.jpg
 // sample fb media (me): https://www.facebook.com/photo.php?fbid=114142636207642
 
-function logBreak(name) {
-    console.log('BREAK-' + name);
-}
-function logData(object) {
-    console.log('> ' + object);
+function test() {
+    // ...
 }
 
 listen();
+//test();

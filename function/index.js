@@ -1,10 +1,8 @@
 'use strict';
+var config = require('./config');
 var request = require('request');
 var xml2js = require('xml2js');
 var xmlParser = new xml2js.Parser({explicitArray: false, mergeAttrs : true});
-var request = require('request');
-var verifyToken = 'eLUqm93Fe9ZSV8VG2yFAJkgrb';
-var appVersion = '1.0.1.3';
 
 // main entry point for the application
 exports.handler = (event, context, callback) => {
@@ -22,7 +20,7 @@ exports.handler = (event, context, callback) => {
         let challenge = queryParams['hub.challenge'];
 
         // check if mode and token sent is correct
-        if (token === verifyToken) {
+        if (token === config.verifyToken) {
             // respond with the challenge token from the request
             console.log('--> Webhook verified');
             callback(null, parseInt(challenge));
@@ -150,7 +148,7 @@ function onStandby(sender_psid, recipient_id, received_message) {
         return;
     }
 
-    if(received_message.text=='stop' || received_message.text=="Stop")
+    if(received_message.text.toLowerCase() =='come back')
     {
         // client wants the bot back. route to take thread control
         take_thread_controlJSONconstructor(sender_psid, recipient_id);
@@ -211,7 +209,8 @@ function processAgentInstruction (sender_psid, recipient_id, instruction) {
             imageJSONconstructor(sender_psid, recipient_id, instruction);
         } else if (instruction.startsWith('`version')) {
             console.log('Routing test version to sendAPI');
-            sendAPI(sender_psid, recipient_id, returnTextJSON(appVersion));
+            let version = returnVersion();
+            sendAPI(sender_psid, recipient_id, returnTextJSON('v' + version));
         }
 
         return;
@@ -293,7 +292,8 @@ function processAgentInstruction (sender_psid, recipient_id, instruction) {
         }
     } else if (data.hasOwnProperty('test')) {
         console.log('XML is for a test');
-        sendAPI(sender_psid, recipient_id, returnTextJSON(appVersion));
+        let version = returnVersion();
+        sendAPI(sender_psid, recipient_id, returnTextJSON('v' + version));
     } else {
         console.log('ERROR: No XML intent detected; replying with a fallback');
         let message_body = returnTextJSON("I'm sorry, there was a problem processing that request...");
@@ -672,12 +672,12 @@ function attachmentUploadAPI (sender_psid, recipient_id, responseJSON) {
 
 // helper functions
 function returnPageAccessToken (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.pageAccessToken;
         }
@@ -685,12 +685,12 @@ function returnPageAccessToken (recipient_id) {
     return -1;
 }
 function returnClientAccessToken (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.clientAccessToken;
         }
@@ -698,12 +698,12 @@ function returnClientAccessToken (recipient_id) {
     return -1;
 }
 function returnPageName (recipient_id) {
-    var pages = require('pages');
-    var pagesJSONString = JSON.stringify(pages);
-    var pagesJSONData = JSON.parse(pagesJSONString);
+    let pages = require('./page-data.json');
+    let pagesJSONString = JSON.stringify(pages);
+    let pagesJSONData = JSON.parse(pagesJSONString);
 
-    for (var i = 0; i < pagesJSONData.pages.length; i++) {
-        var page = pagesJSONData.pages[i];
+    for (let i = 0; i < pagesJSONData.pages.length; i++) {
+        let page = pagesJSONData.pages[i];
         if (page.pageID==recipient_id) {
             return page.pageName;
         }
@@ -819,4 +819,8 @@ function returnListElementJSON (element) {
 
     // return
     return payload;
+}
+function returnVersion() {
+    let pkg = require('./package.json');
+    return pkg.version;
 }
