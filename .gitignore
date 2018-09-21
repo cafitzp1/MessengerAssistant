@@ -12,5 +12,6 @@ Archive.zip
 # data
 config.js
 page-data.json
+/requests
 /function/config.js
 /function/page-data.json

@@ -1,7 +1,0 @@
-Template for handover. Text property is optional.
-<!--==============================-->
-
-<task>
-    <handover text="__messageText" />
-</task>
-        

@@ -1,7 +1,0 @@
-Example handover instruction.
-<!--==============================-->
-
-<task>
-    <handover text="Ok, I'll now route your messages directly to the page inbox." />
-</task>
-        
