@@ -138,7 +138,7 @@ function onStandby(sender_psid, recipient_id, received_message) {
         return;
     }
 
-    if(received_message.text=='stop' || received_message.text=="Stop")
+    if(received_message.text.toLowerCase() =='come back')
     {
         // client wants the bot back. route to take thread control
         take_thread_controlJSONconstructor(sender_psid, recipient_id);
