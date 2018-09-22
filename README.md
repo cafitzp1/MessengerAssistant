@@ -10,7 +10,7 @@ Messenger Assistant is a network of Facebook chat bots.
 
 Pages linked get their own chat bot each with fully customizable replies. 
 * Chat bots are capable of natural language processing, intent and entity extraction, and managing states and context of a conversation
-* Bots have the ability to provide instruction for structuting any combination of templates available on the messenger platform
+* Bots have the ability to provide instruction for structuring any combination of templates available on the messenger platform
 
 <img src="images/app_demo.gif" alt="demo" width="900" height="500"/>
 
