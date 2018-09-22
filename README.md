@@ -3,47 +3,58 @@
 ## What is it?
 
 Messenger Assistant is a network of Facebook chat bots.
+* More than just one bot
+* Application handles routing and processing of messages for any number of pages linked to the application
 
-<img src="images/app_getstarted.gif" alt="app getstarted" width="900" height="500"/>
+<img src="images/app_intro.gif" alt="intro" width="900" height="500"/>
 
-Various pages may have their own chat bot each with fully customizable replies. 
+Pages linked get their own chat bot each with fully customizable replies. 
+* Chat bots are capable of natural language processing, intent and entity extraction, and managing states and context of a conversation
+* Bots have the ability to provide instruction for structuting any combination of templates available on the messenger platform
 
+<img src="images/app_demo.gif" alt="demo" width="900" height="500"/>
 
-Responses can use any combination of the available templates available on the messenger platform. 
+Inbox control can be handed back over to the page owner at any point, manually or at the request of a sender.
+* Message notifications are suppressed unless control is handed back to the page owner 
+* Page owner can resume bot coverage for a sender by marking done in the page inbox section
+* Bot control can also be returned at the request of a sender
 
+> In the clip below, you'll notice that notifications only stay after control has been passed to the page owner.
+> I'm receiving these notifications because I own the test page that I'm messaging.
 
-Inbox control can be handed back over to the page owner at any point if the message sender requests.
-
+<img src="images/app_handover.gif" alt="intro" width="900" height="500"/>
 
 ----
 ## How does it work? 
 
-Webhook event is received by the application (user sends a message or clicks a button)
+A webhook event is received by the application (user sends a message, clicks a button, requests handover, etc.)
 
 * Production app uses AWS Lambda function registered to the webhook events
 ```javascript
 exports.handler = (event, context, callback) => {
     // ...
-    // function is invoked everytime a webhook event occurs
 }
+
+// function is invoked everytime a webhook event occurs
 ```
 * Test app (shown in the screencasts) uses a local express server 
+> Test Bot 3 shown for the handover demo is actually using the Lambda function, the rest are on the test environment
 ```javascript
 function listen() {
   app.listen(config.port || config.port, () => console.log(`Webhook listening on port ${config.port}...`));
   // ...
-  // function is called manually when we want to listen for events
 }
 
+// function is called manually when we want to listen for events
 listen();
 ```
 
 Event is routed to its appropriate handler
 
-* Most events are messages and are therefore sent to a message event handler
+* Events being listened for include messages, postbacks, standbys (messages when control has been passed to the page owner), and handovers 
 * Message contents undergo some validation before proceeding (making sure no media is in the message as this messes with the next step)
 
-Instruction is requested from assigned “agent” by providing message text
+Instruction is requested from assigned “agent”
 
 * An API is used for managing NLP
 * This API acts as the “bot” of the program; intent(s) of the message get extracted, and instructions are sent back to the program accordingly
@@ -72,15 +83,15 @@ Instruction is requested from assigned “agent” by providing message text
 </response>
 ```
 
-That's the instruction for making this...
+*Instruction which is used for putting together a generic template (shown in the following image)...*
 
 <img src="images/xml_response_fb.png" alt="xml response in fb" width="900" height="500"/>
 
 POST Request body is constructed according to instruction
 
-* Instruction is sent in XML to make it easy for the program to parse the data
-* XML is more or less converted to JSON and the particular post request required for making, say, a button template appear in messenger is put together
-* Once constructed, the request_body ends for the example above ends up looking something like this
+* Instruction is sent in XML because it's easy for the program to parse
+* XML data gets converted to JSON and the particular post request required for making, say, a generic template appear in messenger is put together
+* Once constructed, request body ends up looking something like this
 
 ```json
 "generic_template": {
@@ -112,7 +123,7 @@ POST Request body is constructed according to instruction
 Data is routed to the appropriate function responsible for executing POST request
 
 * Usually posting via the send API but also handover protocol pass_thread_control and take_thread_control
-* APIs generally use sender_psid (sender of the message), recipient_id (page inbox that received the message), and stored page authentication tokens for managed pages to ensure response gets back to the correct location
+* APIs generally use sender_psid (sender of the message), recipient_id (page inbox that received the message), and stored page authentication tokens (in an untracked .json file) for managed pages to ensure response gets back to the correct location
 
 ```javascript
 request({
@@ -143,5 +154,14 @@ request({
     }
 });
 ```
+
+----
+## In action
+
+Each step of the process logged
+
+<img src="images/code_demo.gif" alt="intro" width="900" height="500"/>
+
+It might be hard to follow, but what's essentially happening is the application is receiving an event (in this case a postback), and each step of the process is being logged (for the sake of tracking what's going on in the code). The body of the received request gets logged first, followed by a mix of reports from within various methods of the program as well as the contents of other requests. The POST request for the API is underneath where it says "Routing payload to agent". The instruction received from the agent is the big block of text in the middle under "Instruction received:". The outline for the POST request that gets sent back to Facebook via the send API is at the bottom under "POST body:". I recommend taking a screen cap and reading through the log to get a better understanding.
 
 [github-repo](https://github.com/cafitzp1/MessengerAssistant)
