@@ -634,29 +634,6 @@ function takeThreadControl (sender_psid, recipient_id, request_body) {
         }
     });
 }
-function attachmentUploadAPI (sender_psid, recipient_id, responseJSON) {
-    console.log('*ENTRY - handoverProtocolAPI*');
-
-    // get page access token for recipient
-    let pageAccessToken = returnPageAccessToken(recipient_id);
-
-    request({
-        "uri": "https://graph.facebook.com/v2.6/me/pass_thread_control",
-        "qs": { "access_token": pageAccessToken },
-        "method": "POST",
-        "json": responseJSON
-    }, (err, res, body) => {
-        if (!err) {
-            console.log("POST body:");
-            console.log(responseJSON);
-            console.log("--> Control passed to agent");
-            sendAPI(sender_psid, recipient_id, {"text": "Okay. From here on out, you're messages will be sent directly to the owner of this page. Until next time!"});
-        } else { 
-            console.error(`--! ERROR: ${err}`);
-            console.log();
-        }
-    });
-}
 
 // helper functions
 function returnPageAccessToken (recipient_id) {

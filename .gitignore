@@ -3,12 +3,6 @@
 .DS_Store
 Archive.zip
 
-# function contents (redundant)
-/function/node_modules
-/function/package.json
-/function/package-lock.json
-/function/Archive.zip
-
 # data
 config.js
 page-data.json
